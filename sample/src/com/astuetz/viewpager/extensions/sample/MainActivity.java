@@ -153,7 +153,7 @@ public class MainActivity extends ActionBarActivity {
 
     public class MyPagerAdapter extends FragmentPagerAdapter {
 
-        private final String[] TITLES = {"Home",  "Setting", "なんJ 用語集"};
+        private final String[] TITLES = {"Home",  "Setting", "なんJ  用語集"};
 
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
