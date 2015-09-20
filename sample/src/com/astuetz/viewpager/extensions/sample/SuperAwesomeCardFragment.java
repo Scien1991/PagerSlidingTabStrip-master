@@ -74,20 +74,32 @@ public class SuperAwesomeCardFragment extends Fragment {
 				webView.setWebViewClient(new WebViewClient());
 				webView.loadUrl("http://wikiwiki.jp/livejupiter/?MenuBar");
 				webView.requestFocusFromTouch();
+
+                webView.setOnKeyListener(new View.OnKeyListener() {
+                    @Override
+                    public boolean onKey(View v, int keyCode, KeyEvent event) {
+                        if (event.getAction() != KeyEvent.ACTION_DOWN) {
+                            return false;
+                        }
+
+                        switch (keyCode) {
+                            case KeyEvent.KEYCODE_BACK:
+                                if (webView.canGoBack())
+                                    webView.goBack();
+                                return true;
+                            default:
+                                return false;
+                        }
+                    }
+                });
 				break;
 			default:
 				rootView = null;
 				break;
 		}
-		return rootView;
-	}
-
-	public boolean canGoBack() {
-		return  ( webView != null ) && webView.canGoBack();
-	}
-
-	public boolean GoBack(){
-		webView.goBack();
-		return true;
+        if (rootView != null) {
+            rootView.setFocusableInTouchMode(true);
+        }
+        return rootView;
 	}
 }

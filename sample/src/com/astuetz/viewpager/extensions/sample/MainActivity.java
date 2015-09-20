@@ -136,24 +136,9 @@ public class MainActivity extends ActionBarActivity {
         changeColor(currentColor);
     }
 
-    @Override
-    public void onBackPressed() {
-       FragmentManager fm = getSupportFragmentManager();
-       Fragment webView = fm.findFragmentById(R.id.web_yougoshu);
-
-        if (webView instanceof SuperAwesomeCardFragment) {
-            boolean goBack = ((SuperAwesomeCardFragment)webView).canGoBack();
-            if (!goBack){
-                super.onBackPressed();
-            }else{
-                ((SuperAwesomeCardFragment) webView).GoBack();
-            }
-        }
-    }
-
     public class MyPagerAdapter extends FragmentPagerAdapter {
 
-        private final String[] TITLES = {"Home",  "Setting", "�Ȃ�J  �p��W"};
+        private final String[] TITLES = {"ホーム",  "設定", "なんJ 用語集"};
 
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
