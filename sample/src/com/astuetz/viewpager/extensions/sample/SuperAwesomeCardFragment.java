@@ -27,6 +27,10 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -37,6 +41,9 @@ public class SuperAwesomeCardFragment extends Fragment {
 
     @InjectView(R.id.web_yougoshu)
 	WebView webView;
+
+    ArrayList<HashMap<String, String>> mList;
+    MyListViewAdapter mladapter;
 
 	private int position;
 
@@ -57,11 +64,26 @@ public class SuperAwesomeCardFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView;
+        ListView listView;
 		switch (position){
 			case 0:
 				rootView = inflater.inflate(R.layout.layout_mainpage,container,false);
 				ViewCompat.setElevation(rootView,50);
-				break;
+                listView = (ListView)rootView.findViewById(R.id.showtopic);
+                mList = new ArrayList<>();
+                HashMap<String, String> item;
+                for (int a = 0; a < 10; a++) {
+                    item = new HashMap<>();
+                    item.put("title", "Title " + String.valueOf(a+1));
+                    item.put("desc", "Description " + String.valueOf(a+1));
+                    mList.add(item);
+                }
+                //アダプター作成してリストアイテムを追加
+                mladapter = new MyListViewAdapter(getActivity(), mList);
+                //アダプターを設定
+                listView.setAdapter(mladapter);
+
+                break;
 			case 1:
 				rootView = inflater.inflate(R.layout.layout_setting,container,false);
 				ViewCompat.setElevation(rootView,50);

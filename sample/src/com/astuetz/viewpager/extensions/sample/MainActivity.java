@@ -32,7 +32,6 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebViewFragment;
 import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
