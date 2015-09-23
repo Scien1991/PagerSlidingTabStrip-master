@@ -6,10 +6,19 @@
     android:orientation="vertical"
     android:fitsSystemWindows="true">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:background="?attr/colorPrimary"
+        android:text="おんJまとめ ver0.1"
+        android:id="@+id/apptitle"
+        android:textColor="#ffffff" />
+
     <com.astuetz.PagerSlidingTabStrip
         android:id="@+id/tabs"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="30dp"
         android:background="?attr/colorPrimary"
         app:pstsPaddingMiddle="true" />
 

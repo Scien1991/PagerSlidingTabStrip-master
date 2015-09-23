@@ -32,6 +32,7 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
@@ -42,8 +43,8 @@ import butterknife.InjectView;
 
 public class MainActivity extends ActionBarActivity {
 
-//    @InjectView(R.id.toolbar)
-//    Toolbar toolbar;
+    @InjectView(R.id.apptitle)
+    TextView apptitle;
     @InjectView(R.id.tabs)
     PagerSlidingTabStrip tabs;
     @InjectView(R.id.pager)
@@ -58,7 +59,6 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
-//        setSupportActionBar(toolbar);
         // create our manager instance after the content view is set
         mTintManager = new SystemBarTintManager(this);
         // enable status bar tint
@@ -90,10 +90,7 @@ public class MainActivity extends ActionBarActivity {
     private void changeColor(int newColor) {
         tabs.setBackgroundColor(newColor);
         mTintManager.setTintColor(newColor);
-        // change ActionBar color just if an ActionBar is available
-        Drawable colorDrawable = new ColorDrawable(newColor);
-        Drawable bottomDrawable = new ColorDrawable(getResources().getColor(android.R.color.transparent));
-
+        apptitle.setBackgroundColor(newColor);
         currentColor = newColor;
     }
 
