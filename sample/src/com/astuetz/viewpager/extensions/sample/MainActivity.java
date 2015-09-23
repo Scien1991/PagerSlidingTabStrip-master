@@ -42,15 +42,14 @@ import butterknife.InjectView;
 
 public class MainActivity extends ActionBarActivity {
 
-    @InjectView(R.id.toolbar)
-    Toolbar toolbar;
+//    @InjectView(R.id.toolbar)
+//    Toolbar toolbar;
     @InjectView(R.id.tabs)
     PagerSlidingTabStrip tabs;
     @InjectView(R.id.pager)
     ViewPager pager;
 
     private MyPagerAdapter adapter;
-    private Drawable oldBackground = null;
     private int currentColor;
     private SystemBarTintManager mTintManager;
 
@@ -59,7 +58,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
-        setSupportActionBar(toolbar);
+//        setSupportActionBar(toolbar);
         // create our manager instance after the content view is set
         mTintManager = new SystemBarTintManager(this);
         // enable status bar tint
@@ -87,16 +86,6 @@ public class MainActivity extends ActionBarActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_contact:
-                QuickContactFragment.newInstance().show(getSupportFragmentManager(), "QuickContactFragment");
-                return true;
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     private void changeColor(int newColor) {
         tabs.setBackgroundColor(newColor);
@@ -104,16 +93,7 @@ public class MainActivity extends ActionBarActivity {
         // change ActionBar color just if an ActionBar is available
         Drawable colorDrawable = new ColorDrawable(newColor);
         Drawable bottomDrawable = new ColorDrawable(getResources().getColor(android.R.color.transparent));
-        LayerDrawable ld = new LayerDrawable(new Drawable[]{colorDrawable, bottomDrawable});
-        if (oldBackground == null) {
-            getSupportActionBar().setBackgroundDrawable(ld);
-        } else {
-            TransitionDrawable td = new TransitionDrawable(new Drawable[]{oldBackground, ld});
-            getSupportActionBar().setBackgroundDrawable(td);
-            td.startTransition(200);
-        }
 
-        oldBackground = ld;
         currentColor = newColor;
     }
 
