@@ -17,20 +17,14 @@
 package com.astuetz.viewpager.extensions.sample;
 
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
-import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,7 +45,7 @@ public class MainActivity extends ActionBarActivity {
     ViewPager pager;
 
     private MyPagerAdapter adapter;
-    private int currentColor;
+    private String currentColor;
     private SystemBarTintManager mTintManager;
 
     @Override
@@ -88,10 +82,21 @@ public class MainActivity extends ActionBarActivity {
 
 
     private void changeColor(int newColor) {
+        apptitle.setBackgroundColor(newColor);
         tabs.setBackgroundColor(newColor);
         mTintManager.setTintColor(newColor);
-        apptitle.setBackgroundColor(newColor);
-        currentColor = newColor;
+        //currentColor = newColor;
+    }
+
+    private void changeColor(String newcolor){
+        String rgb[] = newcolor.split(" ", 0);
+                apptitle.setBackgroundColor(Color.parseColor(rgb[0]));
+                tabs.setBackgroundColor(Color.parseColor(rgb[1]));
+                mTintManager.setTintColor(Color.parseColor(rgb[1]));
+                apptitle.setTextColor(Color.parseColor(rgb[2]));
+                tabs.setTextColor(Color.parseColor(rgb[2]));
+                tabs.setIndicatorColor(Color.parseColor(rgb[2]));
+                currentColor = newcolor;
     }
 
     public void onColorClicked(View v) {
@@ -99,16 +104,21 @@ public class MainActivity extends ActionBarActivity {
         changeColor(color);
     }
 
+    public void onTeamColorClicked(View v) {
+        String teamcolor = v.getTag().toString();
+        changeColor(teamcolor);
+    }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt("currentColor", currentColor);
+        outState.putString("currentColor", currentColor);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        currentColor = savedInstanceState.getInt("currentColor");
+        currentColor = savedInstanceState.getString("currentColor");
         changeColor(currentColor);
     }
 
