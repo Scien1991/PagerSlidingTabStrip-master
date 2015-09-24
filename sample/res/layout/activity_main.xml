@@ -30,12 +30,9 @@
         tools:context=".MainActivity"/>
 
     <LinearLayout
-        android:id="@+id/colors"
+        android:id="@+id/ad"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_marginBottom="8dip"
-        android:layout_marginLeft="4dip"
-        android:layout_marginRight="4dip"
+        android:layout_height="50dp"
         android:orientation="horizontal" >
 
         <ImageView

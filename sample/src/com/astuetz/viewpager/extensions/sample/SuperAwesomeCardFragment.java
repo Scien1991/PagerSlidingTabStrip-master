@@ -25,9 +25,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +37,7 @@ import java.util.HashMap;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-public class SuperAwesomeCardFragment extends Fragment {
+public class SuperAwesomeCardFragment extends Fragment implements View.OnClickListener {
 
 	private static final String ARG_POSITION = "position";
 
@@ -82,9 +84,10 @@ public class SuperAwesomeCardFragment extends Fragment {
                 mladapter = new MyListViewAdapter(getActivity(), mList);
                 //アダプターを設定
                 listView.setAdapter(mladapter);
-
+                Button btn_renew = (Button)rootView.findViewById(R.id.renew);
+                btn_renew.setOnClickListener(this);
                 break;
-			case 1:
+            case 1:
 				rootView = inflater.inflate(R.layout.layout_setting,container,false);
 				ViewCompat.setElevation(rootView,50);
 				break;
@@ -124,4 +127,9 @@ public class SuperAwesomeCardFragment extends Fragment {
         }
         return rootView;
 	}
+
+    @Override
+    public void onClick(View v) {
+        Toast.makeText(getActivity(), "更新しています..", Toast.LENGTH_SHORT).show();
+    }
 }
