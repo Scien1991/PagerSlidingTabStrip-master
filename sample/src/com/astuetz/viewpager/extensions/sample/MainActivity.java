@@ -144,7 +144,6 @@ public class MainActivity extends ActionBarActivity {
         public Fragment getItem(int position) {
             return SuperAwesomeCardFragment.newInstance(position);
         }
-
-
     }
+
 }

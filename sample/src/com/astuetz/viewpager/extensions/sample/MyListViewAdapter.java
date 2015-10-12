@@ -15,6 +15,7 @@ public class MyListViewAdapter extends ArrayAdapter<HashMap<String, String>> {
     private LayoutInflater mInflater;
     private TextView mTitle;
     private TextView mDesc;
+    private TextView mURL;
 
     public MyListViewAdapter(Context context, List<HashMap<String, String>> objects)
     {
@@ -36,7 +37,12 @@ public class MyListViewAdapter extends ArrayAdapter<HashMap<String, String>> {
 
             mDesc = (TextView)convertView.findViewById(R.id.title);
             mDesc.setText(item.get("desc"));
+
+            mURL = (TextView)convertView.findViewById(R.id.url);
+            mURL.setText(item.get("url"));
+
         }
         return convertView;
     }
+
 }
